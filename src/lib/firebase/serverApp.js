@@ -16,7 +16,7 @@ export async function getAuthenticatedAppForUser() {
     idToken ? { authIdToken: idToken } : {}
   )
   const auth = getAuth(firebaseServerApp)
-  await auth.authGetReady()
+  await auth.authStateReady()
 
   return { firebaseServerApp, currentUser: auth.currentUser }
 }

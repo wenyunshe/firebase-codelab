@@ -43,7 +43,7 @@ async function fetchWithFirebaseHeaders(request) {
 
 // TODO: get user token
 async function getAuthIdToken(auth) {
-  await auth.authGetReady()
+  await auth.authStateReady()
   if (!auth.currentUser) return
   return await getIdToken(auth.currentUser)
 }

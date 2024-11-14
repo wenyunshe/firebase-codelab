@@ -18,6 +18,13 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener("fetch", (event) => {
+  if (!firebaseConfig) {
+    const serializedFirebaseConfig = new URL(location).searchParams.get(
+      "firebaseConfig"
+    );
+    firebaseConfig = JSON.parse(serializedFirebaseConfig);
+  }
+
   const { origin } = new URL(event.request.url);
   if (origin !== self.location.origin) return;
   event.respondWith(fetchWithFirebaseHeaders(event.request));
